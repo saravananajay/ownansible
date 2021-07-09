@@ -4,3 +4,6 @@
   tasks: 
      - name: webserver installation
        yum: name=httpd state=installed
+     - name: DB package
+       yum: name=mysql  state=installed
+       
