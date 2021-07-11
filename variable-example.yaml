@@ -1,0 +1,9 @@
+---
+- hosts: webservers
+  become: yes  
+  vars:
+    softwarename: httpd
+    softstate: present
+  tasks:
+    - name: Ensure Apache installed
+      yum:  name={{softwarename}} state={{softstate}}

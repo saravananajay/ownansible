@@ -1,0 +1,25 @@
+---
+- hosts: webservers
+  become: yes  
+  tasks:
+    - name: Ensure Apache installed
+      yum:  name=httpd state=present
+    - name: Directory Create 	 	 
+      file: path=/var/www/html/ansible state=directory
+    - name: Deploy Webpage to path=/var/www/html/ansible
+      copy: src=index.html dest=/var/www/html/ansible/ mode=0644
+    - name: Ensure Apache is running
+      service: name=httpd enabled=yes state=started
+- hosts: dbservers
+  become: yes
+  tasks:  
+    - name: Execute the Uptime command over Command module
+      command: yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm     
+    - name: Ensure mysql running
+      service: name=mysqld state=started
+    - name: MYSQL-python is in installed
+      yum: name=MYSQL-python state=present
+    - name: Create Database
+      mysql_db: name=devops state=present
+    - name: create user named mint
+      mysql_user: name=mint password=12345 priv='*.*:ALL' state=present
