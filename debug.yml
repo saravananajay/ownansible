@@ -1,0 +1,6 @@
+---
+- name: Debug Example
+  hosts: all 
+  tasks:
+  - name: Print debug message
+    debug:

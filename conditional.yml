@@ -1,0 +1,7 @@
+--- 
+- hosts: webservers
+  become: yes
+  tasks:
+  - name: Install Apache on Centos
+    yum: name=httpd state=present
+    when: ansible_os_family == "Debian" 
