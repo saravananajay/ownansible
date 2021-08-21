@@ -1,0 +1,12 @@
+---
+ - name: END2END
+   hosts: database
+   tasks:
+     - name: APACHE WEB SERVER
+       yum: name=httpd state=present
+     - name: SERVICE RESTART
+       service: name=httpd state=started
+     - name: Copying index to remote server
+       copy: src=index.html dest=/var/www/html/
+
+

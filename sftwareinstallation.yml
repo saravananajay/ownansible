@@ -1,0 +1,10 @@
+---
+- name: SOFTWRE Installation
+  hosts: database
+  tasks:
+    - name: WEBSERVER INSTALLATION
+      yum: name=httpd state=latest 
+  
+    - name: SERVICE START
+      service: name=httpd state=restarted      
+
